@@ -2,15 +2,14 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 import numpy as np
 
-def func(y,t):
- u, f = y
- dydt = [2 * u - f, u]
- return dydt
+func = lambda y, t: t**2
+dt=1e-3
+t = np.arange(0,1,dt)
+res = odeint(func, y0 = 0, t = t)
 
-t = np.arange(0,1,10)
-res = odeint(func, y0 = [1,1], t = t)
 plt.figure(figsize=(5,4))
-plt.plot(t, res[:, 1])
-plt.plot(t[::50], np.exp(t[::50]), 'o')
+plt.plot(t, res)
+plt.plot(t[::50], t[::50]**3/3, 'o')
 plt.show()
+
 
