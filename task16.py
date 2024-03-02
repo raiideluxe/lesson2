@@ -24,13 +24,30 @@ result = minimize(f, x0=x0, tol=1e-2, callback=get_path)
 x1 = result.x
 print(result)
 
-plt.scatter([x0], [f(x0)], color = 'tab:green')
+"""plt.scatter([x0], [f(x0)], color = 'tab:green')
 plt.plot(path, [f(i) for i in path], '--o', color="black", lw=0.75, markersize=2)
 plt.scatter([x1], [f(x1)], color = 'tab:red')
 plt.plot(x, f(x), zorder = 0)
 plt.xlim(0, 10)
 plt.ylim(-3.5, 2)
+#plt.show()"""
+
+result = minimize(f, x0=1.5)
+x2 = result.x
+print(result)
+
+plt.annotate("", xytext=(2.4, f(2.4)), xy=(x1, f(x1)),
+arrowprops=dict(arrowstyle="->"))
+plt.annotate("", xytext=(1.5, f(1.5)), xy=(x2, f(x2)),
+arrowprops=dict(arrowstyle="->"))
+plt.scatter([x1, x2], [f(x1), f(x2)], color = 'tab:red')
+plt.scatter([2.4, 1.5], [f(2.4), f(1.5)], color = 'tab:green')
+plt.plot(x, f(x), zorder=0)
 plt.show()
+
+from scipy.optimize import differential_evolution
+result = differential_evolution(f, [(x.min(),x.max())])
+print(result)
 
 
 
