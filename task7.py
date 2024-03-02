@@ -1,3 +1,7 @@
 import numpy as np
-massive=[3,2,5,4,1,7]
+x=np.array([3,2,5,4,1,7])
+indices = np.argsort(x)[:3]
+print(indices)
+
+
 
