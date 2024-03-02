@@ -13,7 +13,6 @@ plt.xlim(0, 0.5)
 plt.xlabel('time', fontsize = 14)
 plt.ylabel('Amplitude', fontsize = 14)
 plt.show()"""
-#график построен
 
 signal = np.fft.fft(wave + noise, t.size)
 
@@ -44,5 +43,12 @@ plt.show()"""
 
 signal_clean = ind * signal
 isignal = np.fft.ifft(signal_clean)
+
+plt.plot(t, wave + noise, lw = 1, color = 'tab:blue', label = 'noisy')
+plt.xlim(0, 0.5)
+plt.plot(isignal, lw=2, color='tab:red')
+plt.xlabel('time', fontsize=14)
+plt.ylabel('amplitude', fontsize=14)
+plt.show()
 
 
