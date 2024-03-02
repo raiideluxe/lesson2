@@ -16,11 +16,22 @@ f = lambda x: x**2 * ( 1 - 0.1 * (x) **2 )* np.exp(- 0.1 * (x)**2)
 fig, ax = plt.subplots()
 ax.set(xlabel='x', ylabel='f(x)')
 ax.plot(x, f(x))
-plt.show()
+#plt.show()
 
 x0 = 2.4
 path = [x0]
 result = minimize(f, x0=x0, tol=1e-2, callback=get_path)
 x1 = result.x
 print(result)
+
+plt.scatter([x0], [f(x0)], color = 'tab:green')
+plt.plot(path, [f(i) for i in path], '--o', color="black", lw=0.75, markersize=2)
+plt.scatter([x1], [f(x1)], color = 'tab:red')
+plt.plot(x, f(x), zorder = 0)
+plt.xlim(0, 10)
+plt.ylim(-3.5, 2)
+plt.show()
+
+
+
 
